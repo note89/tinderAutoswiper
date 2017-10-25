@@ -1,0 +1,14 @@
+{
+  "name": "tinder-autoswipe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Nils Eriksson",
+  "license": "MIT",
+  "dependencies": {
+    "most": "^1.7.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^3.0.5",
+    "typescript": "^2.5.3"
+  }
+}
