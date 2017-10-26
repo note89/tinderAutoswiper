@@ -7,6 +7,7 @@
     "300": "icon.png"
   },
   "permissions": [
+      "tabs",
       "activeTab",
       "storage",
       "background"
@@ -16,6 +17,9 @@
     "default_popup": "popup.html",
     "default_title": "Click here!"
   },
+    "background":{
+        "scripts": ["dist/popup.bundle.js"]
+    },
  "content_scripts": [
     {
       "matches": [
@@ -23,7 +27,7 @@
         "https://tinder.com/*"
       ],
       "js": [
-        "dist/bundle.js"
+        "dist/content.bundle.js"
       ]
     }
   ]

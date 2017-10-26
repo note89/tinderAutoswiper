@@ -5,10 +5,12 @@
   "author": "Nils Eriksson",
   "license": "MIT",
   "dependencies": {
-    "most": "^1.7.2"
+    "@types/chrome": "0.0.50",
+    "most": "^1.7.2",
+    "webpack": "^3.8.1"
   },
   "devDependencies": {
-    "ts-loader": "^3.0.5",
+    "awesome-typescript-loader": "^3.2.3",
     "typescript": "^2.5.3"
   }
 }

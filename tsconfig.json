@@ -2,8 +2,12 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "commonjs",
+    "alwaysStrict": true,
     "target": "es6",
     "allowJs": true
-  }
+  },
+    "include":[
+        "./src"
+    ]
 }
