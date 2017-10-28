@@ -1,5 +1,5 @@
 import { query, sendMessage } from "./utils/chrome";
-import { just, Stream, combine, scan, fromEvent, mergeArray } from "most";
+import { Stream, fromEvent, mergeArray } from "most";
 
 const rangeValue$ = fromEvent("input", document.getElementById("level"))
   .map(ev => (ev.target as HTMLInputElement).valueAsNumber)
@@ -20,11 +20,12 @@ const sendMessage$ = rangeValue$
   .combine(
     (value, playing) => ({ payload: { value: value / 9001, play: playing } }),
     playing$
-  ) //Knowleadge at the wrong place.
+  )
   .combine((payload, endpoint) => endpoint(payload), sendToCurrentTab$)
   .debounce(100)
-  .switch()
-  .drain();
+  .switch();
+
+sendMessage$.drain();
 
 /* IO */
 const playPauseButtonIO$ = playing$.map(playing => () =>
@@ -37,6 +38,8 @@ const currentLevelIO$ = rangeValue$.map(value => () => {
   valueDiv.innerText = text;
 });
 
+const portConnectIO = currentTabId$.map(id => () => chrome.tabs.connect(id));
+
 const notTinderUrl$ = queryIO$.map(x => x[0].url.indexOf("tinder") < 0);
 const notTinderIO$ = notTinderUrl$.map(notTinder => () => {
   const notTinderEl = document.getElementById("notTinderContainer");
@@ -47,7 +50,8 @@ const notTinderIO$ = notTinderUrl$.map(notTinder => () => {
 const io$: Stream<() => void> = mergeArray([
   playPauseButtonIO$,
   currentLevelIO$,
-  notTinderIO$
+  notTinderIO$,
+  portConnectIO
 ]);
 
 io$.observe(x => x());

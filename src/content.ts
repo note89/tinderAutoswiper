@@ -1,5 +1,5 @@
-import { onMessage$ } from "./utils/chrome";
-import { combine, iterate, just, empty } from "most";
+import { onMessage$, onConnect$, onDisconnect } from "./utils/chrome";
+import { iterate, empty } from "most";
 
 const getLike = () =>
   document.querySelector('button[aria-label="Like"]') as HTMLElement;
@@ -10,7 +10,10 @@ const getFrequeny = (max: number) => (min: number) => (ratio: number) =>
 const defaultFreq = getFrequeny(100)(2000);
 
 const frequency$ = onMessage$.map(x => defaultFreq(x.payload.value));
-const playing$ = onMessage$.map(x => x.payload.play);
+const onDisconnect$ = onDisconnect(onConnect$);
+const playing$ = onMessage$
+  .map(x => x.payload.play)
+  .merge(onDisconnect$.constant(false));
 
 const delay = (y: number) => new Promise(resolve => setTimeout(resolve, y));
 
@@ -26,3 +29,7 @@ const click$ = frequency$
 const clickIO$ = click$.constant(() => getLike().click());
 
 clickIO$.observe(x => x());
+
+/*** EXIT LOGIC ***/
+//onConnect$.observe(() => console.log("connected"))
+//onDisconnect(onConnect$).observe(() => console.log("disconnect"))
