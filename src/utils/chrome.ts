@@ -35,3 +35,15 @@ export const onDisconnect = (onConnect$: Stream<chrome.runtime.Port>) =>
       );
     })
     .switch();
+
+export const onPortMessage = (port$: Stream<chrome.runtime.Port>) =>
+  port$
+    .map(port => {
+      const portMessageSubject = async<{ payload: Payload }>();
+      const message$ = new Stream(portMessageSubject.source);
+      port.onMessage.addListener((x: { payload: Payload }) =>
+        portMessageSubject.next(x)
+      );
+      return message$;
+    })
+    .switch();
