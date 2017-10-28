@@ -7,6 +7,7 @@
   "dependencies": {
     "@types/chrome": "0.0.50",
     "most": "^1.7.2",
+    "most-subject": "^5.3.0",
     "webpack": "^3.8.1"
   },
   "devDependencies": {
