@@ -7,15 +7,15 @@ export const query = (queryInfo: chrome.tabs.QueryInfo) =>
     }))
 
 
-export const sendMessage = (id: number) => (payload: any) =>
+export const sendMessage = (id: number) => (msg: {payload: Payload}) =>
     fromPromise(new Promise<any>((resolve, reject) => {
-        chrome.tabs.sendMessage(id, payload, resolve)
+        chrome.tabs.sendMessage(id, msg, resolve)
     }))
 
 
 
-const onMessageSubject = async<{payload: number}>();
-export const onMessage$ = new Stream(onMessageSubject.source)
+const onMessageSubject = async<{payload: Payload}>();
+export const onMessage$ = new Stream(onMessageSubject.source).multicast()
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {

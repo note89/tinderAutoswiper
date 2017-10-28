@@ -1,8 +1,20 @@
 <head>
     <script src="dist/popup.bundle.js" defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/range.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    Tinder swiper
-    <input id="level" value="0" type="range" min="0" max="9001">
-    <div id="levelValue">0</div>
+    <div class="container">
+        <div class="row center heading">
+            <div class="title">Tinder</div>
+            <div class="subtitle">Autoswiper</div>
+        </div>
+        <input id="level" value="0" type="range" min="0" max="9001">
+        <div id="levelValue">0</div>
+        <div id="over9000">Desperation level is over 9000!</div>
+        <button id="playPause" class="button-primary">Play</button>
+    </div>
 </body>
