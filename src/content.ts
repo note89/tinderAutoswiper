@@ -20,7 +20,8 @@ const click$ = frequency$
       playing ? iterate(() => delay(freq), freq).skip(1) : empty(),
     playing$
   )
-  .switch();
+  .switch()
+  .merge(playing$.skipRepeats().filter(x => x));
 
 const clickIO$ = click$.constant(() => getLike().click());
 
