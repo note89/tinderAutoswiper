@@ -47,3 +47,10 @@ export const onPortMessage = (port$: Stream<chrome.runtime.Port>) =>
       return message$;
     })
     .switch();
+
+export const getFromStore = (key: string) =>
+  fromPromise(
+    new Promise(resolve => {
+      chrome.storage.local.get(key, resolve);
+    })
+  );

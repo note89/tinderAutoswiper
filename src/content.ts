@@ -1,4 +1,4 @@
-import { onMessage$, onConnect$, onDisconnect } from "./utils/chrome";
+import { onMessage$ } from "./utils/chrome";
 import { iterate, empty } from "most";
 
 const getLike = () =>
@@ -7,13 +7,10 @@ const getLike = () =>
 const getFrequeny = (max: number) => (min: number) => (ratio: number) =>
   Math.floor(min * (1 - ratio) + max * ratio);
 
-const defaultFreq = getFrequeny(100)(2000);
+const defaultFreq = getFrequeny(100)(4000);
 
 const frequency$ = onMessage$.map(x => defaultFreq(x.payload.value));
-const onDisconnect$ = onDisconnect(onConnect$);
-const playing$ = onMessage$
-  .map(x => x.payload.play)
-  .merge(onDisconnect$.constant(false));
+const playing$ = onMessage$.map(x => x.payload.play);
 
 const delay = (y: number) => new Promise(resolve => setTimeout(resolve, y));
 
@@ -29,7 +26,3 @@ const click$ = frequency$
 const clickIO$ = click$.constant(() => getLike().click());
 
 clickIO$.observe(x => x());
-
-/*** EXIT LOGIC ***/
-//onConnect$.observe(() => console.log("connected"))
-//onDisconnect(onConnect$).observe(() => console.log("disconnect"))
