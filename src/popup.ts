@@ -37,9 +37,17 @@ const currentLevelIO$ = rangeValue$.map(value => () => {
   valueDiv.innerText = text;
 });
 
+const notTinderUrl$ = queryIO$.map(x => x[0].url.indexOf("tinder") < 0);
+const notTinderIO$ = notTinderUrl$.map(notTinder => () => {
+  const notTinderEl = document.getElementById("notTinderContainer");
+  const tinderEl = document.getElementById("tinderContainer");
+  notTinder ? (notTinderEl.className = "show") : (tinderEl.className = "show");
+});
+
 const io$: Stream<() => void> = mergeArray([
   playPauseButtonIO$,
-  currentLevelIO$
+  currentLevelIO$,
+  notTinderIO$
 ]);
 
 io$.observe(x => x());

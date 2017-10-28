@@ -12,15 +12,23 @@
             <div class="title">Tinder</div>
             <div class="subtitle">Autoswiper</div>
         </div>
-        <div class="row desperationContainer">
-            <div id="desperationHeading">Desperation Level</div>
-            <div id="levelValue">0</div>
+        
+        <div id="notTinderContainer" class="hide">
+            <div class="row center">
+                <a class="button button-primary" href="https://tinder.com" target="_blank">Go to Tinder</a>
+            </div>
         </div>
-        <div class="row sliderContainer">
-            <input id="level" value="0" type="range" min="0" max="9001" step="1">
-        </div>
-        <div class="row center">
-            <button id="playPause" class="button-primary">Play</button>
+        <div id="tinderContainer" class="hide">
+            <div class="row desperationContainer">
+                <div id="desperationHeading">Desperation Level</div>
+                <div id="levelValue">0</div>
+            </div>
+            <div class="row sliderContainer">
+                <input id="level" value="0" type="range" min="0" max="9001" step="1">
+            </div>
+            <div class="row center">
+                <button id="playPause" class="button-primary">Play</button>
+            </div>
         </div>
     </div>
 </body>
