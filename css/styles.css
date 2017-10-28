@@ -1,46 +1,45 @@
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-body{
-    font-family: 'Montserrat', sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
-.desperationContainer{
-    padding-bottom: 1.6rem;
+.desperationContainer {
+  padding-bottom: 1.6rem;
 }
-#desperationHeading{
-    font-weight: 200;
+#desperationHeading {
+  font-weight: 200;
 }
 #levelValue {
-    font-weight: 900; 
-    font-size: 2rem;
-    float: left;
-    padding-right: 3px;
+  font-weight: 900;
+  font-size: 2rem;
+  float: left;
+  padding-right: 3px;
 }
 
 .sliderContainer {
-    padding-bottom: 3rem;
+  padding-bottom: 3rem;
 }
 
 .heading {
-    padding-top: 2.3rem;
-    padding-bottom: 1.6rem;
-    display:flex;
-    justify-content: center;
-    align-items: baseline;
+  padding-top: 2.3rem;
+  padding-bottom: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .title {
-    font-size: 2.8rem;
-    font-weight: 900;
-    padding-right: 3px;
-    color: #fc3078;
+  font-size: 2.8rem;
+  font-weight: 900;
+  padding-right: 3px;
+  color: #fc3078;
 }
 .subtitle {
-    font-size: 2.0rem;
-    font-weight: 100;
+  font-size: 2rem;
+  font-weight: 100;
 }
