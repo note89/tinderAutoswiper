@@ -5,8 +5,6 @@ const rangeValue$ = fromEvent("input", document.getElementById("level"))
     .map(ev => (ev.target as HTMLInputElement).valueAsNumber)
     .startWith(0)
 
-const over9000$ = rangeValue$.map( x => x > 9000 ? true : false)
-
 const valueDiv = document.getElementById("levelValue")
 const queryIO$ = query({active: true, currentWindow: true})
 const currentTabId$ = queryIO$.map(tabs => tabs[0].id)
@@ -26,20 +24,17 @@ const sendMessage$ =
     .drain()
 
 
-/*Elements */
-const over9000El = document.getElementById("over9000")
 
 /* IO */
 const playPauseButtonIO$ = playing$.map(playing => () => playing ? playPauseBtn.innerText = "Stop Swiping" : playPauseBtn.innerText = "Start Swiping")
-const currentLevelIO$ = rangeValue$.map(value => () => valueDiv.innerText = value.toString())
-const over9000IO$ = over9000$.map( b => () => {
-    over9000El.hidden = !b
+const currentLevelIO$ = rangeValue$.map(value => () => {
+    const text = value > 9000 ? "it's over 9000!" : value.toString()
+    valueDiv.innerText = text
 })
 
 const io$: Stream<() => void> = mergeArray([
     playPauseButtonIO$,
     currentLevelIO$,
-    over9000IO$
 ])
 
 io$.observe(x => x())
