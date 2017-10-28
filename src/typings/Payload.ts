@@ -1,4 +1,4 @@
 declare type Payload = {
-    value: number;
-    play: boolean;
-}
+  value: number;
+  play: boolean;
+};
