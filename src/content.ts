@@ -1,19 +1,17 @@
-import { onMessage$ } from "./utils/chrome";
 import { iterate, empty } from "most";
 
-const getLike = () =>
-  document.querySelector('button[aria-label="Like"]') as HTMLElement;
+import { onMessage$ } from "./utils/chrome";
+import { ratio2Range } from "./utils/ratio2Range";
+import { delay } from "./utils/delay";
 
-const getFrequeny = (max: number) => (min: number) => (ratio: number) =>
-  Math.floor(min * (1 - ratio) + max * ratio);
+/* Utils */
+const ratio2Frequency = ratio2Range(4000)(100);
 
-const defaultFreq = getFrequeny(100)(4000);
-
-const frequency$ = onMessage$.map(x => defaultFreq(x.payload.value));
+/* Messages from popup */
+const frequency$ = onMessage$.map(x => ratio2Frequency(x.payload.value));
 const playing$ = onMessage$.map(x => x.payload.play);
 
-const delay = (y: number) => new Promise(resolve => setTimeout(resolve, y));
-
+/* When to Click */
 const click$ = frequency$
   .combine(
     (freq, playing) =>
@@ -23,6 +21,12 @@ const click$ = frequency$
   .switch()
   .merge(playing$.skipRepeats().filter(x => x));
 
-const clickIO$ = click$.constant(() => getLike().click());
+/* The Like button element */
+const getLikeBtn = () =>
+  document.querySelector('button[aria-label="Like"]') as HTMLElement;
 
+/* IO */
+const clickIO$ = click$.constant(() => getLikeBtn().click());
+
+/* Run */
 clickIO$.observe(x => x());

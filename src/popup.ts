@@ -22,12 +22,10 @@ const playPauseBtn = document.getElementById("playPause");
 
 const toggle$ = fromEvent("click", playPauseBtn);
 
-//const playing$ = toggle$.scan(acc => !acc, false).merge(readFromStore$.map(x => x.playing))
 const playing$ = just(false)
   .merge(readFromStore$.map(x => x.playing))
   .map(b => toggle$.scan(acc => !acc, b))
   .switch();
-playing$.observe(console.log);
 
 const msg$ = rangeValue$.combine(
   (value, playing) => ({ payload: { value: value / 9001, play: playing } }),
@@ -52,7 +50,9 @@ const currentLevelIO$ = rangeValue$.map(value => () => {
   valueDiv.innerText = text;
 });
 
-const notTinderUrl$ = queryIO$.map(x => x[0].url.indexOf("tinder") < 0);
+const notTinderUrl$ = queryIO$.map(
+  x => x[0].url.indexOf("https://tinder.com") < 0
+);
 const notTinderIO$ = notTinderUrl$.map(notTinder => () => {
   const notTinderEl = document.getElementById("notTinderContainer");
   const tinderEl = document.getElementById("tinderContainer");
