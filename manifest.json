@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Tinder Autoswipe",
+  "name": "Tinder Autoswiper",
   "description": "",
   "version": "1.0",
   "icons": {
     "300": "icon.png"
   },
-  "permissions": ["tabs", "activeTab", "storage", "background"],
+  "permissions": ["tabs", "activeTab", "storage"],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
