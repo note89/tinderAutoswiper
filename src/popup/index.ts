@@ -24,8 +24,8 @@ const msg$ = rangeValue$.combine(
 );
 
 const sendMessage$ = msg$
+  .debounce(50)
   .combine((payload, endpoint) => endpoint(payload), sendToCurrentTab$)
-  .debounce(100)
   .switch();
 
 sendMessage$.drain();
