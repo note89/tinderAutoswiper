@@ -23,7 +23,9 @@ const click$ = frequency$
 
 /* The Like button element */
 const getLikeBtn = () =>
-  document.querySelector('button[aria-label="Like"]') as HTMLElement;
+  document.getElementsByClassName(
+    "recsGamepad__button--like"
+  )[0] as HTMLElement;
 
 /* IO */
 const clickIO$ = click$.constant(() => getLikeBtn().click());
