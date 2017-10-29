@@ -1,8 +1,8 @@
 import { iterate, empty } from "most";
 
-import { onMessage$ } from "./utils/chrome";
-import { ratio2Range } from "./utils/ratio2Range";
-import { delay } from "./utils/delay";
+import { onMessage$ } from "../utils/chrome";
+import { ratio2Range } from "../utils/ratio2Range";
+import { delay } from "../utils/delay";
 
 /* Utils */
 const ratio2Frequency = ratio2Range(4000)(100);
