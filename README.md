@@ -1,4 +1,4 @@
-# tinderAutoswiper
+# Tinder Autoswiper
 :zap: :two_hearts: Next level swiping
 
 ![](./images/promo.png)
