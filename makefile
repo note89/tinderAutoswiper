@@ -2,7 +2,8 @@ build:
 	./node_modules/.bin/webpack
 	rm -rf package
 	mkdir package
-	cp dist/content.bundle.js dist/popup.bundle.js popup.html icon.png manifest.json package
+	cp -r dist popup.html icon.png manifest.json package
+	rm -rf package/dist/*.map
 
 clean:
 	rm -rf dist
