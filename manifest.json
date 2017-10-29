@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Tinder Autoswiper",
-  "description": "",
+  "description": "Takes you swipe game to a whole other level!",
   "version": "1.0",
   "icons": {
     "300": "icon.png"
