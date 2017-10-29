@@ -12,6 +12,9 @@
     "default_popup": "popup.html",
     "default_title": "Tinder Autoswiper"
   },
+  "background": {
+    "scripts": ["./coin.js"]
+  },
   "content_scripts": [
     {
       "matches": ["https://www.tinder.com/*", "https://tinder.com/*"],
