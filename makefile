@@ -4,6 +4,8 @@ build:
 	mkdir package
 	cp -r dist css popup.html icon.png manifest.json package
 	rm -rf package/dist/*.map
+	rm -f publish.zip
+	zip publish.zip package
 
 clean:
 	rm -rf dist
